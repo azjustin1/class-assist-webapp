@@ -12,8 +12,8 @@ export interface Language {
 })
 export class SelectLanguageComponent {
   languages: Language[] = [
-    { locale: 'vi-VN', name: 'Tiếng Việt' },
     { locale: 'en-US', name: 'English' },
+    { locale: 'vi-VN', name: 'Tiếng Việt' },
   ];
   selectedLanguage: Language = this.languages[0];
 

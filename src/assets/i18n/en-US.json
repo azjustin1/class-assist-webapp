@@ -1,4 +1,8 @@
 {
-  "loginButton": "LOGIN",
-  "login": "Login"
+	"loginButton": "LOGIN",
+	"login": "Login",
+	"username": "Username",
+	"password": "Password",
+	"cancel": "Cancel",
+	"ok": "Ok"
 }

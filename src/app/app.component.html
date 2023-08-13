@@ -4,7 +4,7 @@
   </div>
   <mat-drawer-container [hasBackdrop]="true">
     <mat-drawer #sidenav mode="over"
-      ><app-navigation></app-navigation
+      ><app-navigation (onMenuItemClick)="sidenav.close()"></app-navigation
     ></mat-drawer>
     <mat-drawer-content class="content">
       <router-outlet></router-outlet>

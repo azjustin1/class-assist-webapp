@@ -1,6 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="header" color="primary">
   <button mat-icon-button (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <span (click)="goToHome()">My App</span>
+  <app-select-language></app-select-language>
+  <button mat-button (click)="openLoginDialog()">
+    {{ 'loginButton' | translate }}
+  </button>
+
+
+  <button (click)="test()">Test API</button>
 </mat-toolbar>
