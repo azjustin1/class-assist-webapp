@@ -1,5 +1,5 @@
 <ul *ngFor="let item of menu">
   <li>
-    <a routerLink="/{{ item.path }}">{{ item.name }}</a>
+    <a (click)="onNavigate()" routerLink="/{{ item.path }}">{{ item.name }}</a>
   </li>
 </ul>

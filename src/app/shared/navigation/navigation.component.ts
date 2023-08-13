@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 export interface MenuItem {
   name: string;
@@ -17,5 +16,12 @@ export class NavigationComponent {
     { name: 'Role management', path: '/role-management' },
   ];
 
+  @Output() onMenuItemClick = new EventEmitter();
+
   constructor() {}
+
+
+  onNavigate() {
+    this.onMenuItemClick.emit();
+  }
 }
