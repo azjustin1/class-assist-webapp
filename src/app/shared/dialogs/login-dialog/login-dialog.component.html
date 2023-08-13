@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{ 'login' | translate }}</h1>
+<div mat-dialog-content>
+	<form [formGroup]="loginForm">
+		<div>
+			<mat-form-field>
+				<mat-label>{{ 'username' | translate }}</mat-label>
+				<input matInput formControlName="username" />
+			</mat-form-field>
+		</div>
+		<div>
+			<mat-form-field>
+				<mat-label>{{ 'password' | translate }}</mat-label>
+				<input type="password" matInput formControlName="password" />
+			</mat-form-field>
+		</div>
+	</form>
+	<div mat-dialog-actions>
+		<button mat-button>{{ 'cancel' | translate }}</button>
+		<button
+			[disabled]="!loginForm.dirty"
+			mat-button
+			(click)="login()"
+			[mat-dialog-close]="loginForm.value"
+			cdkFocusInitial
+		>
+			{{ 'ok' | translate }}
+		</button>
+	</div>
+</div>
