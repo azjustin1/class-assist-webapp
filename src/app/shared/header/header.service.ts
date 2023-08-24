@@ -15,6 +15,10 @@ export class HeaderService {
 	}
 
 	getUser(): Observable<any> {
-		return this.httpClient.get('rest/user', { withCredentials: true })
+		return this.httpClient.get('rest/user')
+	}
+
+	refreshToken(): Observable<any> {
+		return this.httpClient.get('rest/auth/refreshToken', {withCredentials: true})
 	}
 }

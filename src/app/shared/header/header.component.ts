@@ -39,4 +39,10 @@ export class HeaderComponent {
 			console.log(res)
 		})
 	}
+
+	refreshToken() {
+		this.headerService.refreshToken().subscribe(res => {
+			console.log(res)
+		})
+	}
 }

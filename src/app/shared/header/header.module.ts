@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core'
 
 import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
-import { I18nModule } from '../I18n/I18nModule.module'
+import { AuthService } from '../auth/auth.service'
+import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component'
 import { MaterialModule } from '../material/material.module'
 import { HeaderComponent } from './header.component'
 import { HeaderService } from './header.service'
-import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component'
 import { SelectLanguageComponent } from './select-language/select-language.component'
-import { AuthProvider } from '../auth/auth.interceptor'
-import { AuthService } from '../auth/auth.service'
+import { SharedModule } from '../shared.module'
 
 @NgModule({
-	imports: [CommonModule, MaterialModule, I18nModule, ReactiveFormsModule],
+	imports: [SharedModule, MaterialModule, ReactiveFormsModule],
 	exports: [HeaderComponent],
 	declarations: [
 		HeaderComponent,
