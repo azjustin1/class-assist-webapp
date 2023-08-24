@@ -4,5 +4,7 @@
 	"username": "Username",
 	"password": "Password",
 	"cancel": "Cancel",
-	"ok": "Ok"
+	"ok": "Ok",
+
+	"addNewUser": "Add new user"
 }

@@ -4,5 +4,7 @@
   "username": "Tên đăng nhập",
 	"password": "Mật khẩu",
 	"cancel": "Huỷ",
-	"ok": "Xác nhận"
+	"ok": "Xác nhận",
+
+  "addNewUser": "Thêm người dùng"
 }
