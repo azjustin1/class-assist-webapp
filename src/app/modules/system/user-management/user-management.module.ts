@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { SharedModule } from 'src/app/shared/shared.module'
 import { UserManagementRoutingModule } from './user-management-routing.module'
 import { UserManagementComponent } from './user-management.component'
-import { MaterialModule } from 'src/app/shared/material/material.module'
 import { UserManagementService } from './user-management.service'
+import { AddOrEditUserComponent } from './add-or-edit-user/add-or-edit-user.component'
 
 @NgModule({
-	declarations: [UserManagementComponent],
-	imports: [CommonModule, UserManagementRoutingModule, MaterialModule],
+	imports: [SharedModule, UserManagementRoutingModule],
+	declarations: [UserManagementComponent, AddOrEditUserComponent],
 	providers: [UserManagementService],
 })
 export class UserManagementModule {}
