@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AppComponent } from './app.component'
+import { authGuard } from './shared/auth/auth.guard'
+import { LoginPageComponent } from './shared/pages/login-page.component'
 
 const routes: Routes = [
 	{
 		path: '',
-		component: AppComponent,
+		loadChildren: () => import('./app.module').then((m) => m.AppModule),
+		canActivate: [authGuard],
+	},
+	{
+		path: 'signin',
+		component: LoginPageComponent,
 	},
 	/** System modules */
 	{
