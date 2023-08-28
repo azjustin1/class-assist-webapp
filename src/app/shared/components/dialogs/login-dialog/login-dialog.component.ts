@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { AuthService } from '../../auth/auth.service'
+import { AuthService } from 'src/app/auth/auth.service'
+import { AUTHENTICATION } from 'src/app/utils/constant'
 
 @Component({
 	selector: 'app-login-dialog',
@@ -25,7 +26,10 @@ export class LoginDialogComponent implements OnInit {
 				this.loginForm.value.password!
 			)
 			.subscribe((res) => {
-				console.log(res)
+				localStorage.setItem(
+					AUTHENTICATION.ACCESS_TOKEN,
+					res.accessToken
+				)
 			})
 	}
 }

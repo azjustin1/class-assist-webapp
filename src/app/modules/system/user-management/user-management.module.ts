@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { SharedModule } from 'src/app/shared/shared.module'
+import { AddOrEditUserComponent } from './add-or-edit-user/add-or-edit-user.component'
 import { UserManagementRoutingModule } from './user-management-routing.module'
 import { UserManagementComponent } from './user-management.component'
 import { UserManagementService } from './user-management.service'
-import { AddOrEditUserComponent } from './add-or-edit-user/add-or-edit-user.component'
 
 @NgModule({
 	imports: [SharedModule, UserManagementRoutingModule],

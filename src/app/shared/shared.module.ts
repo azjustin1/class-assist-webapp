@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core'
-import { I18nModule } from './I18n/I18nModule.module'
-import { MaterialModule } from './material/material.module'
-import { CommonModule } from '@angular/common'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { I18nModule } from './I18n/I18nModule.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
 	imports: [
@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 		ReactiveFormsModule,
 	],
 	declarations: [],
+	providers: [],
 	exports: [
 		I18nModule,
 		MaterialModule,

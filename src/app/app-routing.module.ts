@@ -1,18 +1,21 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { AppComponent } from './app.component'
-import { authGuard } from './shared/auth/auth.guard'
-import { LoginPageComponent } from './shared/pages/login-page.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
 	{
 		path: '',
 		loadChildren: () => import('./app.module').then((m) => m.AppModule),
 		canActivate: [authGuard],
+		component: AppComponent,
 	},
 	{
 		path: 'signin',
-		component: LoginPageComponent,
+		loadChildren: () =>
+			import('../app/shared/pages/login/login-page.module').then(
+				(m) => m.LoginPageModule
+			),
 	},
 	/** System modules */
 	{
@@ -35,7 +38,7 @@ const routes: Routes = [
 		redirectTo: '',
 		pathMatch: 'full',
 	},
-]
+];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
