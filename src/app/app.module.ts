@@ -11,6 +11,7 @@ import { NavigatorModule } from './shared/components/navigator/navigator.module'
 import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './shared/pages/home/home.module';
 
 const SHARE_MODULES = [
 	SharedModule,
@@ -18,6 +19,7 @@ const SHARE_MODULES = [
 	FormsModule,
 	HeaderModule,
 	NavigatorModule,
+	HomeModule
 ];
 
 const SHARE_COMPONENTS = [AppComponent];
@@ -29,6 +31,7 @@ const SYSTEM_MODULES = [UserManagementModule];
 		...SHARE_MODULES,
 		...SYSTEM_MODULES,
 		AppRoutingModule,
+		RouterModule.forRoot([]),
 		BrowserModule,
 		BrowserAnimationsModule,
 	],
