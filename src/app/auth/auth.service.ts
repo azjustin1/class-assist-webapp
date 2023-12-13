@@ -13,7 +13,10 @@ export class AuthService {
 			username: username,
 			password: password,
 		};
-		return this.httpClient.post('rest/auth', bodyRequest);
+		return this.httpClient.post('api/auth', bodyRequest);
 	}
 
+	refreshToken(): Observable<string> {
+		return this.httpClient.get<string>('api/auth/refreshToken');
+	}
 }

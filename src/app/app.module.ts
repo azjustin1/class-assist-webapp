@@ -12,6 +12,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './shared/pages/home/home.module';
+import { ClassroomModule } from './modules/system/classroom/classroom.module';
 
 const SHARE_MODULES = [
 	SharedModule,
@@ -23,7 +24,7 @@ const SHARE_MODULES = [
 ];
 
 const SHARE_COMPONENTS = [AppComponent];
-const SYSTEM_MODULES = [UserManagementModule];
+const SYSTEM_MODULES = [UserManagementModule, ClassroomModule];
 
 @NgModule({
 	declarations: [...SHARE_COMPONENTS],

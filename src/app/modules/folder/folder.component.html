@@ -1,0 +1,15 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+	<mat-tree-node *matTreeNodeDef="let folder" matTreeNodeToggle>
+		<button mat-icon-button matTreeNodeToggle>
+			<mat-icon>{{
+				treeControl.isExpanded(folder) ? 'folder_open' : 'folder'
+			}}</mat-icon>
+		</button>
+		{{ folder.name }}
+		<ul [class.hidden]="!treeControl.isExpanded(folder)">
+			<ng-container matTreeNodeOutlet *ngIf="folder.subfolders">
+				<app-folder [dataSource]="folder.subfolders"></app-folder>
+			</ng-container>
+		</ul>
+	</mat-tree-node>
+</mat-tree>

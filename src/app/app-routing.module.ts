@@ -29,6 +29,13 @@ const routes: Routes = [
 			).then((m) => m.RoleManagementModule),
 	},
 	{
+		path: 'classroom',
+		loadChildren: () =>
+			import(
+				'./modules/system/classroom/classroom-routing.module'
+			).then((m) => m.ClassroomRoutingModule),
+	},
+	{
 		path: 'signin',
 		component: LoginPageComponent,
 	},

@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-import { Router } from '@angular/router'
-import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component'
-import { HeaderService } from './header.service'
-import { HttpClient } from '@angular/common/http'
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component';
+import { HeaderService } from './header.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-header',
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http'
 	styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-	@Output() sidenav = new EventEmitter()
+	@Output() sidenav = new EventEmitter();
 
 	constructor(
 		private router: Router,
@@ -21,28 +21,28 @@ export class HeaderComponent {
 	) {}
 
 	toggleSidenav() {
-		this.sidenav.emit()
+		this.sidenav.emit();
 	}
 
 	goToHome() {
-		this.router.navigateByUrl('/')
+		this.router.navigateByUrl('/');
 	}
 
 	openLoginDialog(): void {
-		const dialogRef = this.dialog.open(LoginDialogComponent, {})
+		const dialogRef = this.dialog.open(LoginDialogComponent, {});
 
-		dialogRef.afterClosed().subscribe((result) => {})
+		dialogRef.afterClosed().subscribe();
 	}
 
 	test() {
 		this.headerService.getUser().subscribe((res) => {
-			console.log(res)
-		})
+			console.log(res);
+		});
 	}
 
 	refreshToken() {
-		this.headerService.refreshToken().subscribe(res => {
-			console.log(res)
-		})
+		this.headerService.refreshToken().subscribe((res) => {
+			console.log(res);
+		});
 	}
 }

@@ -8,10 +8,10 @@ export class UserManagementService {
 	constructor(private httpClient: HttpClient) {}
 
 	getAllUsers(): Observable<User[]> {
-		return this.httpClient.get<User[]>('rest/users');
+		return this.httpClient.get<User[]>('api/users');
 	}
 
 	addNewUser(newUser: User) {
-		return this.httpClient.post<User>('rest/users', newUser);
+		return this.httpClient.post<User>('api/users', newUser);
 	}
 }

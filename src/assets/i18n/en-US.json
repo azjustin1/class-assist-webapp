@@ -6,5 +6,7 @@
 	"cancel": "Cancel",
 	"ok": "Ok",
 
-	"addNewUser": "Add new user"
+	"addNewUser": "Add new user",
+	"quiz": "Quiz",
+	"classroom": "Classroom"
 }
