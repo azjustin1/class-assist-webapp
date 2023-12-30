@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { ClassroomComponent } from './classroom.component';
-import { FolderComponent } from '../../folder/folder.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FolderComponent } from '../../folder/folder.component';
 import { FolderService } from '../../folder/folder.service';
 import { ClassroomRoutingModule } from './classroom-routing.module';
+import { ClassroomComponent } from './classroom.component';
 import { ClassroomService } from './classroom.service';
 
 @NgModule({
 	imports: [SharedModule, ClassroomRoutingModule, FolderComponent],
 	declarations: [ClassroomComponent],
-	providers: [ClassroomService],
+	providers: [ClassroomService, FolderService],
 })
 export class ClassroomModule {}

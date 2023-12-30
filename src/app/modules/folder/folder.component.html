@@ -1,15 +1,36 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-	<mat-tree-node *matTreeNodeDef="let folder" matTreeNodeToggle>
-		<button mat-icon-button matTreeNodeToggle>
-			<mat-icon>{{
-				treeControl.isExpanded(folder) ? 'folder_open' : 'folder'
-			}}</mat-icon>
-		</button>
-		{{ folder.name }}
-		<ul [class.hidden]="!treeControl.isExpanded(folder)">
-			<ng-container matTreeNodeOutlet *ngIf="folder.subfolders">
-				<app-folder [dataSource]="folder.subfolders"></app-folder>
-			</ng-container>
-		</ul>
-	</mat-tree-node>
-</mat-tree>
+<div class="folder-container">
+	<ul>
+		<ng-container *ngFor="let folder of folders">
+			<li>
+				<div class="item">
+					<span
+						class="item-text"
+						[class.active]="selectedFolderId === folder.id"
+					>
+						<mat-icon
+							class="arrow"
+							(click)="loadChildNodes(folder)"
+							>{{
+								folder.isExpand
+									? 'keyboard_arrow_down'
+									: 'keyboard_arrow_right'
+							}}</mat-icon
+						>
+						<div
+							class="folder-name"
+							(click)="onSelectFolder(folder)"
+						>
+							<mat-icon class="arrow">{{
+								folder.isExpand ? 'folder_open' : 'folder'
+							}}</mat-icon>
+							{{ folder.name }}
+						</div>
+					</span>
+					<div *ngIf="folder.isExpand" class="subfolders">
+						<app-folder [folders]="folder.subfolders!"></app-folder>
+					</div>
+				</div>
+			</li>
+		</ng-container>
+	</ul>
+</div>

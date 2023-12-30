@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './shared/pages/home/home.module';
 import { ClassroomModule } from './modules/system/classroom/classroom.module';
+import { FolderModule } from './modules/folder/folder.module';
 
 const SHARE_MODULES = [
 	SharedModule,
@@ -20,7 +21,8 @@ const SHARE_MODULES = [
 	FormsModule,
 	HeaderModule,
 	NavigatorModule,
-	HomeModule
+	HomeModule,
+	FolderModule
 ];
 
 const SHARE_COMPONENTS = [AppComponent];
