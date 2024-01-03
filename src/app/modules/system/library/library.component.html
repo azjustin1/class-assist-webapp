@@ -1,0 +1,19 @@
+<div class="container">
+	<mat-card class="folder">
+		<app-folder></app-folder>
+	</mat-card>
+	<div class="main-content">
+		<div class="actions">
+			<button
+				mat-raised-button
+				color="primary"
+				[routerLink]="['edit-quiz']"
+			>
+				{{ 'addQuiz' | translate }}
+			</button>
+		</div>
+		<div class="switch-content">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>

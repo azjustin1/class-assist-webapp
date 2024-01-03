@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FolderService } from './folder.service';
 import { Folder } from './models/folder.model';
 import { each, keyBy, isUndefined, isEmpty } from 'lodash';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 interface TreeNodeFlatNode {
 	expandable: boolean;
@@ -19,6 +20,11 @@ interface TreeNodeFlatNode {
 })
 export class FolderComponent {
 	@Input() folders!: Folder[] | null;
+	@ViewChild(MatMenuTrigger) contextMenuTrigger!: MatMenuTrigger;
+	contextMenuItems: any[] = [
+		{ label: 'Open', action: 'open' },
+		{ label: 'Delete', action: 'delete' },
+	];
 	selectedFolderId!: number | null;
 
 	constructor(private readonly folderServie: FolderService) {
@@ -48,4 +54,14 @@ export class FolderComponent {
 	onSelectFolder(folder: Folder) {
 		this.folderServie.updateSelectedFolderId(folder.id);
 	}
+
+	onRightClick(event: MouseEvent) {
+		console.log(event.button)
+		if (event.button === 2) {
+      event.preventDefault();
+      this.contextMenuTrigger.openMenu();
+    }
+	}
+
+	onMenuItemClicked(content: string) {}
 }

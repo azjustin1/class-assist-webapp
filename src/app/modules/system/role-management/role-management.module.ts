@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { FolderComponent } from 'src/app/shared/components/folder/folder.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RoleManagementRoutingModule } from './role-management-routing.module';
-import { FolderComponent } from '../../folder/folder.component';
 
 @NgModule({
-  declarations: [],
-  imports: [SharedModule, RoleManagementRoutingModule, FolderComponent],
+	declarations: [],
+	imports: [SharedModule, RoleManagementRoutingModule, FolderComponent],
 })
 export class RoleManagementModule {}

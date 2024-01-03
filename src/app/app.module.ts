@@ -13,7 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './shared/pages/home/home.module';
 import { ClassroomModule } from './modules/system/classroom/classroom.module';
-import { FolderModule } from './modules/folder/folder.module';
+import { FolderModule } from './shared/components/folder/folder.module';
+import { LibraryModule } from './modules/system/library/library.module';
 
 const SHARE_MODULES = [
 	SharedModule,
@@ -22,11 +23,11 @@ const SHARE_MODULES = [
 	HeaderModule,
 	NavigatorModule,
 	HomeModule,
-	FolderModule
+	FolderModule,
 ];
 
 const SHARE_COMPONENTS = [AppComponent];
-const SYSTEM_MODULES = [UserManagementModule, ClassroomModule];
+const SYSTEM_MODULES = [UserManagementModule, ClassroomModule, LibraryModule];
 
 @NgModule({
 	declarations: [...SHARE_COMPONENTS],

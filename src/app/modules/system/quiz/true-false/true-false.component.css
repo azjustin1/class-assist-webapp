@@ -1,0 +1,8 @@
+.question-editor {
+	display: flex;
+  justify-content: space-between;
+}
+
+.editor {
+  width: 75%;
+}

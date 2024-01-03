@@ -1,0 +1,16 @@
+<div class="container">
+	<ng-container #quesiontTypeComponent></ng-container>
+	<div>
+		<mat-chip-listbox>
+			<mat-chip-option (selectionChange)="loadQuestionType(0)">{{
+				'trueFalse' | translate
+			}}</mat-chip-option>
+			<mat-chip-option (selectionChange)="loadQuestionType(1)">{{
+				'multipleChoices' | translate
+			}}</mat-chip-option>
+			<mat-chip-option (selectionChange)="loadQuestionType(2)">{{
+				'shortAnswer' | translate
+			}}</mat-chip-option>
+		</mat-chip-listbox>
+	</div>
+</div>

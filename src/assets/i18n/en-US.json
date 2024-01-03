@@ -8,5 +8,12 @@
 
 	"addNewUser": "Add new user",
 	"quiz": "Quiz",
-	"classroom": "Classroom"
+	"classroom": "Classroom",
+	"library": "Library",
+
+	"addQuiz": "Add Quiz",
+	"quizName": "Quiz Name",
+	"multipleChoices": "Multiple Choices",
+	"trueFalse": "True/False",
+	"shortAnswer": "Short Answer"
 }

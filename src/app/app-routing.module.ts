@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { authGuard } from './auth/auth.guard';
 import { LoginPageComponent } from './shared/pages/login/login-page.component';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
@@ -31,9 +29,16 @@ const routes: Routes = [
 	{
 		path: 'classroom',
 		loadChildren: () =>
-			import(
-				'./modules/system/classroom/classroom-routing.module'
-			).then((m) => m.ClassroomRoutingModule),
+			import('./modules/system/classroom/classroom-routing.module').then(
+				(m) => m.ClassroomRoutingModule
+			),
+	},
+	{
+		path: 'library',
+		loadChildren: () =>
+			import('./modules/system/library/library-routing.module').then(
+				(m) => m.LibraryRoutingModule
+			),
 	},
 	{
 		path: 'signin',

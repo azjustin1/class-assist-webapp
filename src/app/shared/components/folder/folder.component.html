@@ -19,6 +19,9 @@
 						<div
 							class="folder-name"
 							(click)="onSelectFolder(folder)"
+							[matMenuTriggerFor]="contextMenu"
+							(contextmenu)="onRightClick($event)"
+							(mousedown)="$event.preventDefault()"
 						>
 							<mat-icon class="arrow">{{
 								folder.isExpand ? 'folder_open' : 'folder'
@@ -34,3 +37,13 @@
 		</ng-container>
 	</ul>
 </div>
+
+<mat-menu #contextMenu="matMenu">
+	<ng-template matMenuContent>
+		<button mat-menu-item (click)="onMenuItemClicked('open')">Open</button>
+		<button mat-menu-item (click)="onMenuItemClicked('delete')">
+			Delete
+		</button>
+		<!-- Add more menu items as needed -->
+	</ng-template>
+</mat-menu>

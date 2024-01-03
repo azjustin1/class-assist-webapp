@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from 'src/app/shared/shared.module';
-import { FolderComponent } from '../../folder/folder.component';
-import { FolderService } from '../../folder/folder.service';
+import { CommonModule } from '@angular/common';
+import { FolderComponent } from 'src/app/shared/components/folder/folder.component';
+import { FolderService } from 'src/app/shared/components/folder/folder.service';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 import { ClassroomRoutingModule } from './classroom-routing.module';
 import { ClassroomComponent } from './classroom.component';
 import { ClassroomService } from './classroom.service';
 
 @NgModule({
-	imports: [SharedModule, ClassroomRoutingModule, FolderComponent],
+	imports: [CommonModule, MaterialModule, ClassroomRoutingModule, FolderComponent],
 	declarations: [ClassroomComponent],
 	providers: [ClassroomService, FolderService],
 })

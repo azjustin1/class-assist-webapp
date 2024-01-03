@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { I18nModule } from './I18n/I18nModule.module';
+import { I18nModule } from './i18n/I18nModule.module';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
