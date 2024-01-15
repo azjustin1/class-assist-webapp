@@ -1,30 +1,32 @@
 import {
 	Component,
-	ComponentFactoryResolver,
-	ContentChild,
+	Input,
 	OnDestroy,
 	ViewChild,
 	ViewContainerRef,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
-import { MultipleChoicesComponent } from './multiple-choices/multiple-choices.component';
-import { QUESTION_TYPE } from './question-type.token';
-import { QuestionType } from './enums/question-type.enum';
-import { TrueFalseComponent } from './true-false/true-false.component';
-import { ShortAnswerComponent } from './short-answer/short-answer.component';
 import { Editor } from 'ngx-editor';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { QuestionType } from './enums/question-type.enum';
+import { Question } from './models/question.model';
+import { MultipleChoicesComponent } from './multiple-choices/multiple-choices.component';
 import { QuestionComponent } from './question/question.component';
-import { MatCardModule } from '@angular/material/card';
+import { ShortAnswerComponent } from './short-answer/short-answer.component';
+import { TrueFalseComponent } from './true-false/true-false.component';
+import { CommonModule } from '@angular/common';
+import { remove, toArray } from 'lodash';
 
 @Component({
 	standalone: true,
 	imports: [
+		CommonModule,
 		FormsModule,
 		MatButtonModule,
 		MatCardModule,
@@ -40,10 +42,14 @@ import { MatCardModule } from '@angular/material/card';
 	styleUrl: './quiz.component.css',
 })
 export class QuizComponent implements OnDestroy {
-	@ViewChild('questionTypeComponent', { read: ViewContainerRef })
+	@Input() questions: Question[] = [];
+	mapQuestionByOrderId: Record<number, Question> = {};
 	questionTypeComponent!: ViewContainerRef;
+	questionType = QuestionType;
+	selectedQuestionType!: QuestionType | null;
 	editor: Editor;
 	defaultName: string = 'Untitle quiz';
+	isAddNewQuestion: boolean = false;
 
 	constructor(private viewContainerRef: ViewContainerRef) {
 		this.editor = new Editor();
@@ -53,31 +59,35 @@ export class QuizComponent implements OnDestroy {
 		this.editor.destroy();
 	}
 
-	loadQuestionType(option: QuestionType) {
-		if (this.viewContainerRef) {
-			this.viewContainerRef.clear();
+	loadQuestionType(event: MatChipListboxChange) {
+		if (this.isAddNewQuestion) {
+			this.questions[this.questions.length - 1].type = event.value;
+			return;
 		}
-		let componentRef;
+		this.isAddNewQuestion = true;
+		this.selectedQuestionType = event.value;
+		const newQuestion = new Question(
+			this.questions.length + 1,
+			event.value
+		);
+		this.questions.push(newQuestion);
+		this.mapQuestionByOrderId[newQuestion.orderId!] = newQuestion;
+		console.log(this.mapQuestionByOrderId);
+	}
 
-		switch (option) {
-			case QuestionType.TRUE_FALSE:
-				componentRef =
-					this.viewContainerRef.createComponent(TrueFalseComponent);
-				break;
-			case QuestionType.MULTIPLE_CHOICE:
-				componentRef = this.viewContainerRef.createComponent(
-					MultipleChoicesComponent
-				);
-				break;
-			case QuestionType.SHORT_ANSWER:
-				componentRef =
-					this.viewContainerRef.createComponent(ShortAnswerComponent);
-				break;
-			default:
-				break;
-		}
+	onAddQuestion(question: Question) {
+		this.mapQuestionByOrderId[question.orderId!] = {
+			...this.mapQuestionByOrderId[question.orderId!],
+			...question,
+		};
+		this.isAddNewQuestion = false;
+		this.selectedQuestionType = null;
+	}
 
-		if (componentRef) {
-		}
+	onDeleteQuestion(question: Question) {
+		this.mapQuestionByOrderId = remove(
+			toArray(this.mapQuestionByOrderId),
+			(item) => item.orderId !== question.orderId
+		);
 	}
 }

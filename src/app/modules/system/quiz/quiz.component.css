@@ -2,3 +2,19 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.question {
+	width: 75%;
+}
+
+.question-type {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.question-item {
+	width: 100%;
+	margin-top: 50px;
+}

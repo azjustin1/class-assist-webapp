@@ -1,16 +1,20 @@
-<div class="container">
-	<ng-container #quesiontTypeComponent></ng-container>
-	<div>
-		<mat-chip-listbox>
-			<mat-chip-option (selectionChange)="loadQuestionType(0)">{{
-				'trueFalse' | translate
-			}}</mat-chip-option>
-			<mat-chip-option (selectionChange)="loadQuestionType(1)">{{
-				'multipleChoices' | translate
-			}}</mat-chip-option>
-			<mat-chip-option (selectionChange)="loadQuestionType(2)">{{
-				'shortAnswer' | translate
-			}}</mat-chip-option>
-		</mat-chip-listbox>
+<div class="question-container">
+	<div class="question">
+		<ng-container [ngSwitch]="question.type">
+			<div *ngSwitchCase="questionType.TRUE_FALSE">
+				<app-true-false
+					[(question)]="question"
+				></app-true-false>
+			</div>
+			<div *ngSwitchDefault></div>
+		</ng-container>
+	</div>
+	<div class="actions">
+		<button mat-icon-button color="primary" (click)="onAddClick()">
+			<mat-icon>check</mat-icon>
+		</button>
+		<button mat-icon-button color="warn" (click)="onDeleteClick()">
+			<mat-icon>delete</mat-icon>
+		</button>
 	</div>
 </div>

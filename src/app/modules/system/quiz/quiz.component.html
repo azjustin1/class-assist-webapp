@@ -1,3 +1,35 @@
-<mat-card>
-</mat-card>
-<app-question></app-question>
+@for (question of mapQuestionByOrderId | keyvalue; track $index) { @if
+(question.value.isEditting) {
+<div class="question-item">
+	<mat-card>
+		<mat-card-content>
+			<app-question
+				[question]="question.value"
+				(onAddQuestion)="onAddQuestion($event)"
+				(onDeleteQuestion)="onDeleteQuestion($event)"
+			></app-question>
+		</mat-card-content>
+	</mat-card>
+</div>
+} @else {
+<div class="question-item">
+	<app-question
+		[question]="question.value"
+		(onAddQuestion)="onAddQuestion($event)"
+		(onDeleteQuestion)="onDeleteQuestion($event)"
+	></app-question>
+</div>
+} }
+
+<div class="question-type">
+	<mat-chip-listbox
+		[value]="selectedQuestionType"
+		(change)="loadQuestionType($event)"
+	>
+		@for (type of questionType | keyvalue; track $index) {
+		<mat-chip-option [value]="type.value">{{
+			type.value.toString() | translate
+		}}</mat-chip-option>
+		}
+	</mat-chip-listbox>
+</div>

@@ -1,0 +1,14 @@
+.question-container {
+  display: flex;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}
