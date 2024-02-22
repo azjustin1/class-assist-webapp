@@ -9,5 +9,4 @@ import { TranslateModule } from '@ngx-translate/core';
 	templateUrl: 'multiple-choices.component.html',
 })
 export class MultipleChoicesComponent {
-	constructor() {}
 }

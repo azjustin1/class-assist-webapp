@@ -2,9 +2,7 @@
 	<div class="question">
 		<ng-container [ngSwitch]="question.type">
 			<div *ngSwitchCase="questionType.TRUE_FALSE">
-				<app-true-false
-					[(question)]="question"
-				></app-true-false>
+				<app-true-false [(question)]="question"></app-true-false>
 			</div>
 			<div *ngSwitchDefault></div>
 		</ng-container>

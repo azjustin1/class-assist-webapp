@@ -19,7 +19,19 @@ export class FolderService {
 		return this.httpClient.get<Folder[]>('api/folder');
 	}
 
-	getChildFoldersByParentId(parentId: number): Observable<Folder> {
-		return this.httpClient.get<Folder>(`api/folder/${parentId}`);
+	addNewFolder(folder: Folder): Observable<Folder> {
+		return this.httpClient.post<Folder>('api/folder', folder);
+	}
+
+	editFolder(folder: Folder): Observable<Folder> {
+		return this.httpClient.put<Folder>('api/folder', folder);
+	}
+
+	deleteFolder(folderId: number): Observable<boolean> {
+		return this.httpClient.delete<boolean>(`api/folder/${folderId}`);
+	}
+
+	getChildFoldersByParentId(parentId: number): Observable<Folder[]> {
+		return this.httpClient.get<Folder[]>(`api/folder/${parentId}`);
 	}
 }

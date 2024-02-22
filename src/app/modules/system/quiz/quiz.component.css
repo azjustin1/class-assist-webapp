@@ -3,6 +3,15 @@
 	flex-direction: column;
 }
 
+.question__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.question__name {
+	width: 75%
+}
+
 .question {
 	width: 75%;
 }

@@ -1,3 +1,3 @@
 export enum QuestionType {
-  MULTIPLE_CHOICES = 'multipleChoices', SHORT_ANSWER = 'shortAnswer', TRUE_FALSE = 'trueFalse'
+  MULTIPLE_CHOICES , SHORT_ANSWER , TRUE_FALSE
 }

@@ -3,11 +3,9 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	OnChanges,
 	OnDestroy,
 	OnInit,
-	Output,
-	SimpleChanges,
+	Output
 } from '@angular/core';
 import {
 	FormBuilder,

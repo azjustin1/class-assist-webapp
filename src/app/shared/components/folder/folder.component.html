@@ -1,49 +1,30 @@
-<div class="folder-container">
-	<ul>
-		<ng-container *ngFor="let folder of folders">
-			<li>
-				<div class="item">
-					<span
-						class="item-text"
-						[class.active]="selectedFolderId === folder.id"
-					>
-						<mat-icon
-							class="arrow"
-							(click)="loadChildNodes(folder)"
-							>{{
-								folder.isExpand
-									? 'keyboard_arrow_down'
-									: 'keyboard_arrow_right'
-							}}</mat-icon
-						>
-						<div
-							class="folder-name"
-							(click)="onSelectFolder(folder)"
-							[matMenuTriggerFor]="contextMenu"
-							(contextmenu)="onRightClick($event)"
-							(mousedown)="$event.preventDefault()"
-						>
-							<mat-icon class="arrow">{{
-								folder.isExpand ? 'folder_open' : 'folder'
-							}}</mat-icon>
-							{{ folder.name }}
-						</div>
-					</span>
-					<div *ngIf="folder.isExpand" class="subfolders">
-						<app-folder [folders]="folder.subfolders!"></app-folder>
-					</div>
-				</div>
-			</li>
-		</ng-container>
-	</ul>
-</div>
-
-<mat-menu #contextMenu="matMenu">
-	<ng-template matMenuContent>
-		<button mat-menu-item (click)="onMenuItemClicked('open')">Open</button>
-		<button mat-menu-item (click)="onMenuItemClicked('delete')">
-			Delete
+<div class="container">
+	<div class="actions">
+		<button mat-icon-button>
+			<mat-icon>note_add</mat-icon>
 		</button>
-		<!-- Add more menu items as needed -->
-	</ng-template>
-</mat-menu>
+		<button mat-icon-button (click)="onAddNewFolder()">
+			<mat-icon>create_new_folder</mat-icon>
+		</button>
+	</div>
+	<mat-list class="folder-container">
+		<mat-list-item class="folder-item" *ngFor="let folder of folders">
+			<app-folder-item
+				[data]="folder"
+				(onEditFolder)="onEditFolder($event)"
+				(onDelete)="onDeleteItem($event)"
+			></app-folder-item>
+		</mat-list-item>
+	</mat-list>
+
+	<mat-list class="folder-container">
+		<mat-list-item class="folder-item" *ngFor="let quiz of quizzes">
+			<app-folder-item
+				[isFile]="true"
+				[data]="quiz"
+				(onEditFile)="onEditQuiz($event)"
+				(onDelete)="onDeleteItem($event)"
+			></app-folder-item>
+		</mat-list-item>
+	</mat-list>
+</div>

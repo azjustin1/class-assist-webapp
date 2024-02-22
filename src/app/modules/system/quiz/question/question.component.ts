@@ -4,6 +4,7 @@ import {
 	EventEmitter,
 	Input,
 	OnDestroy,
+	OnInit,
 	Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -37,15 +38,33 @@ import { TrueFalseComponent } from '../true-false/true-false.component';
 	templateUrl: 'question.component.html',
 	styleUrl: './question.component.css',
 })
-export class QuestionComponent implements OnDestroy {
+export class QuestionComponent implements OnInit, OnDestroy {
 	@Input() question!: Question;
 	@Output() onAddQuestion = new EventEmitter<Question>();
 	@Output() onDeleteQuestion = new EventEmitter<Question>();
 	questionType = QuestionType;
+	questionTypeEnum = QuestionType;
 	editor: Editor;
 
 	constructor() {
 		this.editor = new Editor();
+	}
+	ngOnInit(): void {
+		console.log(this.question.type === QuestionType.TRUE_FALSE)
+		console.log(this.question.type, QuestionType.TRUE_FALSE)
+		switch (this.question.type) {
+			case QuestionType.TRUE_FALSE:
+				console.log('True false');
+				break;
+
+			case QuestionType.MULTIPLE_CHOICES:
+			console.log("Mutiple")
+			break;
+
+			default:
+				console.log('Default');
+				break;
+		}
 	}
 
 	ngOnDestroy(): void {

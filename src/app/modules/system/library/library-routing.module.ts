@@ -2,24 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LibraryComponent } from './library.component';
 import { QuizComponent } from '../quiz/quiz.component';
+import { FolderComponent } from 'src/app/shared/components/folder/folder.component';
+import { FolderDetailComponent } from 'src/app/shared/components/folder/folder-detail/folder-detail.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: LibraryComponent,
-		children: [
-			{
-				path: 'edit-quiz',
-				loadChildren: () =>
-					import('../quiz/quiz-routing.module').then(
-						(m) => m.QuizRoutingModule
-					),
-			},
-		],
+		children: [],
 	},
 	{
-		path: 'edit-quiz',
+		path: 'edit-quiz/:id',
 		component: QuizComponent,
+	},
+	{
+		path: 'folder/:id',
+		component: FolderDetailComponent,
 	},
 ];
 

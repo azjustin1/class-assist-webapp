@@ -1,3 +1,19 @@
+<div class="question__header">
+	<mat-form-field class="question__name">
+		<mat-label>Favorite food</mat-label>
+		<input
+			matInput
+			placeholder="Ex. Pizza"
+			value="Sushi"
+			[(ngModel)]="quiz.name"
+		/>
+	</mat-form-field>
+
+	<button mat-raised-button color="primary" (click)="onSaveQuiz()">
+		{{ 'saveAndExit' | translate }}
+	</button>
+</div>
+
 @for (question of mapQuestionByOrderId | keyvalue; track $index) { @if
 (question.value.isEditting) {
 <div class="question-item">
@@ -26,10 +42,14 @@
 		[value]="selectedQuestionType"
 		(change)="loadQuestionType($event)"
 	>
-		@for (type of questionType | keyvalue; track $index) {
-		<mat-chip-option [value]="type.value">{{
-			type.value.toString() | translate
+		<mat-chip-option [value]="questionType.MULTIPLE_CHOICES">{{
+			'multipleChoices' | translate
 		}}</mat-chip-option>
-		}
+		<mat-chip-option [value]="questionType.SHORT_ANSWER">{{
+			'shortAnswer' | translate
+		}}</mat-chip-option>
+		<mat-chip-option [value]="questionType.TRUE_FALSE">{{
+			'trueFalse' | translate
+		}}</mat-chip-option>
 	</mat-chip-listbox>
 </div>

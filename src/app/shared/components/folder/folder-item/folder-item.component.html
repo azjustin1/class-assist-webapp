@@ -1,0 +1,26 @@
+@if (data) {
+<mat-card class="folder-item">
+	<mat-card-content class="folder-content">
+		<mat-card-title>
+			<div class="folder-name" (click)="onLoadFolder(data.id!)">
+				<mat-icon>{{ isFile ? 'insert_drive_file' : 'folder' }}</mat-icon
+				>&nbsp;
+				<span>
+					{{ data.name }}
+				</span>
+			</div>
+		</mat-card-title>
+		<mat-card-actions>
+			<div>
+				<button mat-icon-button [matMenuTriggerFor]="menu">
+					<mat-icon> more_vert </mat-icon>
+				</button>
+			</div>
+		</mat-card-actions>
+	</mat-card-content>
+</mat-card>
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="onEditClick()">Edit</button>
+	<button mat-menu-item (click)="onDeleteClick()">Delete</button>
+</mat-menu>
+}

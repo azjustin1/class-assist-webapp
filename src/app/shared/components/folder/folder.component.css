@@ -1,37 +1,17 @@
-ul {
-	list-style-type: none;
+
+.folder-container {
+	display: flex;
+	flex-wrap: wrap;
 }
 
-li {
-	white-space: nowrap;
-	overflow: hidden;
-	max-width: fit-content;
-	text-overflow: ellipsis;
-	margin-left: -50px;
-}
-
-.item {
+.folder-item {
+	width: 300px;
+	margin: 10px;
 	cursor: pointer;
 }
 
-.item-text {
+.actions {
 	display: flex;
-	align-items: center;
-	width: fit-content;
-	height: fit-content;
-}
-
-.item-text.active {
-	background-color: #e0e0e0;
-	padding-right: 5px;
-}
-
-
-.folder-name {
-	display: flex;
-	align-items: center;
-}
-
-.subfolders {
-	margin-left: 20px;
+	flex-direction: row-reverse;
+	width: 100%;
 }
