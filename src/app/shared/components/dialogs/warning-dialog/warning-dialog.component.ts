@@ -16,6 +16,7 @@ import {
 		MatDialogActions,
 	],
 	templateUrl: 'warning-dialog.component.html',
+	styleUrl: 'warning-dialog.component.css'
 })
 export class WarningDialogComponent {
 

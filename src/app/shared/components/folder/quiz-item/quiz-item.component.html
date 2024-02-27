@@ -1,11 +1,11 @@
-@if (folder) {
-<mat-card class="folder-item">
-	<mat-card-content class="folder-content">
+@if (quiz) {
+<mat-card class="quiz-item">
+	<mat-card-content class="quiz-content">
 		<mat-card-title (click)="open()">
-			<div class="folder-name">
-				<mat-icon>folder</mat-icon>&nbsp;
+			<div class="quiz-name">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;
 				<span>
-					{{ folder.name }}
+					{{ quiz.name }}
 				</span>
 			</div>
 		</mat-card-title>

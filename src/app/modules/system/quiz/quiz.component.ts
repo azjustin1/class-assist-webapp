@@ -13,16 +13,18 @@ import { MatChipListboxChange, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { each, remove, toArray } from 'lodash';
+import { remove, toArray } from 'lodash';
 import { Editor } from 'ngx-editor';
 import { QuestionType } from './enums/question-type.enum';
+import { Choice } from './models/choice.model';
 import { Question } from './models/question.model';
+import { Quiz } from './models/quiz.model';
 import { QuestionComponent } from './question/question.component';
 import { QuizService } from './quiz.service';
-import { Quiz } from './models/quiz.model';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+
+const DEFAULT_MULTIPLE_CHOICES_OPTIONS = 4;
 
 @Component({
 	standalone: true,
@@ -45,7 +47,6 @@ import { Router } from '@angular/router';
 })
 export class QuizComponent implements OnInit, OnDestroy {
 	@Input()
-	quizId: number = 9;
 	quiz: Quiz = new Quiz();
 	mapQuestionByOrderId: Record<number, Question> = {};
 	questionTypeComponent!: ViewContainerRef;
@@ -55,16 +56,17 @@ export class QuizComponent implements OnInit, OnDestroy {
 	defaultName: string = 'Untitle quiz';
 	isAddNewQuestion: boolean = false;
 
-	constructor(private quizService: QuizService, private router: Router) {
+	constructor(
+		private quizService: QuizService,
+		private router: Router,
+		private route: ActivatedRoute
+	) {
 		this.editor = new Editor();
 	}
 
 	ngOnInit(): void {
-		this.quizService.getById(this.quizId).subscribe((quiz) => {
-			this.quiz = quiz;
-			each(quiz.questions, (question: Question) => {
-				this.mapQuestionByOrderId[question.id!] = question;
-			});
+		this.route.params.subscribe((params) => {
+			console.log(params['quizId']);
 		});
 	}
 
@@ -73,21 +75,54 @@ export class QuizComponent implements OnInit, OnDestroy {
 	}
 
 	loadQuestionType(event: MatChipListboxChange) {
-		if (this.isAddNewQuestion) {
-			this.quiz.questions[
-				this.quiz.questions.length ? this.quiz.questions.length : 0 - 1
-			].type = event.value;
-			return;
-		}
+		// if (this.isAddNewQuestion) {
+		// 	this.quiz.questions[
+		// 		this.quiz.questions.length ? this.quiz.questions.length : 0 - 1
+		// 	].type = event.value;
+		// 	return;
+		// }
 		this.isAddNewQuestion = true;
 		this.selectedQuestionType = event.value;
-		console.log(this.quiz.questions);
 		const newQuestion = new Question(
 			this.quiz.questions.length ? this.quiz.questions.length : 0 + 1,
-			event.value
+			event.value,
+			this.generateChoice(this.selectedQuestionType!)
 		);
 		this.quiz.questions.push(newQuestion);
-		this.mapQuestionByOrderId[newQuestion.orderId!] = newQuestion;
+		this.mapQuestionByOrderId[newQuestion.index!] = newQuestion;
+	}
+
+	generateChoice(questionType: QuestionType): Choice[] {
+		let result: Choice[] = [];
+		switch (questionType) {
+			case QuestionType.MULTIPLE_CHOICES:
+			case QuestionType.SHORT_ANSWER:
+				for (let i = 1; i <= DEFAULT_MULTIPLE_CHOICES_OPTIONS; i++) {
+					const choice: Choice = {
+						index: i,
+						content: '',
+						isCorrect: false,
+					};
+					result.push(choice);
+				}
+				break;
+			case QuestionType.TRUE_FALSE:
+				const trueChoice: Choice = {
+					index: 1,
+					content: 'True',
+					isCorrect: false,
+				};
+				const falseChoice: Choice = {
+					index: 2,
+					content: 'False',
+					isCorrect: false,
+				};
+				result.push(trueChoice, falseChoice);
+				break;
+			default:
+				return [];
+		}
+		return result;
 	}
 
 	onSaveQuiz() {
@@ -97,29 +132,29 @@ export class QuizComponent implements OnInit, OnDestroy {
 		};
 		let result;
 		if (this.quiz.id) {
-			result = this.quizService.editQuiz(this.quiz)
+			result = this.quizService.editQuiz(this.quiz);
 		} else {
-			result = this.quizService.createNewQuiz(this.quiz)
+			result = this.quizService.createNewQuiz(this.quiz);
 		}
 
-		result.subscribe(res => {
-			this.router.navigate(['library'])
-		})
+		result.subscribe((res) => {
+			this.router.navigate(['library']);
+		});
 	}
 
 	onAddQuestion(question: Question) {
-		this.mapQuestionByOrderId[question.orderId!] = {
-			...this.mapQuestionByOrderId[question.orderId!],
+		this.mapQuestionByOrderId[question.index!] = {
+			...this.mapQuestionByOrderId[question.index!],
 			...question,
 		};
-		this.isAddNewQuestion = false;
+		this.isAddNewQuestion = true;
 		this.selectedQuestionType = null;
 	}
 
 	onDeleteQuestion(question: Question) {
 		this.mapQuestionByOrderId = remove(
 			toArray(this.mapQuestionByOrderId),
-			(item) => item.orderId !== question.orderId
+			(item) => item.index !== question.index
 		);
 	}
 }

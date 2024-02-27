@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {
 	MatDialogActions,
 	MatDialogContent,
-	MatDialogRef
+	MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -23,20 +23,22 @@ import { Folder } from '../models/folder.model';
 		MatDialogActions,
 	],
 	templateUrl: 'add-or-edit-folder-dialog.component.html',
+	styleUrl: 'add-or-edit-folder-dialog.component.css',
 })
-export class AddOrEditFolderDialogComponent {
-	@Input() folder!: Folder;
+export class AddOrEditFolderDialogComponent<T extends Folder> {
+	@Input() data!: T;
+	@Input() title: string = '';
+	@Input() isEdit: boolean = false;
 
 	constructor(
-		public dialogRef: MatDialogRef<AddOrEditFolderDialogComponent>,
+		public dialogRef: MatDialogRef<AddOrEditFolderDialogComponent<T>>
 	) {}
 
 	onOkClick() {
-		this.dialogRef.close(this.folder);
+		this.dialogRef.close(this.data);
 	}
 
 	onCancelClick() {
 		this.dialogRef.close();
 	}
-	
 }

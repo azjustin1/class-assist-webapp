@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LibraryComponent } from './library.component';
 import { QuizComponent } from '../quiz/quiz.component';
-import { FolderComponent } from 'src/app/shared/components/folder/folder.component';
 import { FolderDetailComponent } from 'src/app/shared/components/folder/folder-detail/folder-detail.component';
 
 const routes: Routes = [
@@ -13,6 +12,10 @@ const routes: Routes = [
 	},
 	{
 		path: 'edit-quiz/:id',
+		component: QuizComponent,
+	},
+	{
+		path: 'add-quiz',
 		component: QuizComponent,
 	},
 	{

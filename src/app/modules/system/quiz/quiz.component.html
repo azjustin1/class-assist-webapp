@@ -1,6 +1,6 @@
 <div class="question__header">
 	<mat-form-field class="question__name">
-		<mat-label>Favorite food</mat-label>
+		<mat-label>Quiz name</mat-label>
 		<input
 			matInput
 			placeholder="Ex. Pizza"
@@ -10,7 +10,7 @@
 	</mat-form-field>
 
 	<button mat-raised-button color="primary" (click)="onSaveQuiz()">
-		{{ 'saveAndExit' | translate }}
+		Save And Exit
 	</button>
 </div>
 
@@ -42,14 +42,14 @@
 		[value]="selectedQuestionType"
 		(change)="loadQuestionType($event)"
 	>
-		<mat-chip-option [value]="questionType.MULTIPLE_CHOICES">{{
-			'multipleChoices' | translate
-		}}</mat-chip-option>
-		<mat-chip-option [value]="questionType.SHORT_ANSWER">{{
-			'shortAnswer' | translate
-		}}</mat-chip-option>
-		<mat-chip-option [value]="questionType.TRUE_FALSE">{{
-			'trueFalse' | translate
-		}}</mat-chip-option>
+		<mat-chip-option [value]="questionType.MULTIPLE_CHOICES"
+			>Multiple Choices</mat-chip-option
+		>
+		<mat-chip-option [value]="questionType.SHORT_ANSWER"
+			>Short Answer</mat-chip-option
+		>
+		<mat-chip-option [value]="questionType.TRUE_FALSE"
+			>True False</mat-chip-option
+		>
 	</mat-chip-listbox>
 </div>

@@ -1,13 +1,18 @@
+.question__content {
+	display: flex;
+	width: 77%;
+	align-items: start;
+}
 
 .editor-container {
-  width: 100%;
+  width: 77%;
   display: flex;
 }
 
 .editor {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
 }
 
 .editor__text {
@@ -15,11 +20,11 @@
   flex-direction: row;
 }
 
-.answers {
+.question__choice {
   display: flex;
   flex-direction: row;
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .actions {

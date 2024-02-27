@@ -1,4 +1,35 @@
-<mat-form-field>
-	<mat-label>{{ 'quizName' | translate }}</mat-label>
-	<input matInput />
-</mat-form-field>
+<form [formGroup]="questionForm" class="question-form">
+	<div class="question__content">
+		<h2 class="mat-display-2">{{ question.index }}.&nbsp;&nbsp;</h2>
+		<div class="question__editor">
+			<ckeditor
+				[editor]="Editor"
+				[config]="config"
+				formControlName="content"
+				[(ngModel)]="question.content"
+				(focusIn)="onToggleEditor()"
+				(focusOut)="onToggleEditor()"
+			></ckeditor>
+		</div>
+	</div>
+
+	<div class="question__choice">
+		@for (choice of question.choices; track $index) {
+		<div class="choice">
+			<mat-checkbox
+				class="choice__radio"
+				color="primary"
+				value="choice.isCorrect"
+				(click)="onMarkCorrectChoice(choice)"
+			></mat-checkbox>
+			<div class="choice__editor">
+				<app-choice-item
+					[choice]="choice"
+					(onDelete)="onDeleteChoice($event)"
+				></app-choice-item>
+			</div>
+		</div>
+		}
+		<button mat-raised-button (click)="onAddChoice()" class="choice__add-button"><mat-icon>add</mat-icon> Add Answer</button>
+	</div>
+</form>

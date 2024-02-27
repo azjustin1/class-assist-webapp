@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/app/modules/system/quiz/models/quiz.model';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -16,6 +16,10 @@ import { FolderItemComponent } from './folder-item/folder-item.component';
 import { FolderService } from './folder.service';
 import { Folder } from './models/folder.model';
 import { WarningDialogComponent } from '../dialogs/warning-dialog/warning-dialog.component';
+import { QuizItemComponent } from './quiz-item/quiz-item.component';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 interface TreeNodeFlatNode {
 	expandable: boolean;
@@ -25,7 +29,15 @@ interface TreeNodeFlatNode {
 
 @Component({
 	selector: 'app-folder',
-	imports: [SharedModule, MatButtonModule, FolderItemComponent],
+	imports: [
+		CommonModule,
+		MatButtonModule,
+		MatMenuModule,
+		MatListModule,
+		MatIconModule,
+		FolderItemComponent,
+		QuizItemComponent,
+	],
 	providers: [FolderService],
 	standalone: true,
 	templateUrl: './folder.component.html',
@@ -65,8 +77,11 @@ export class FolderComponent {
 
 	onAddNewFolder() {
 		const newFolder = new Folder('');
-		const dialogRef = this.dialog.open(AddOrEditFolderDialogComponent);
-		dialogRef.componentInstance.folder = newFolder;
+		const dialogRef = this.dialog.open(AddOrEditFolderDialogComponent, {
+			disableClose: true,
+		});
+		dialogRef.componentInstance.data = newFolder;
+		dialogRef.componentInstance.title = 'Add Folder';
 		dialogRef.afterClosed().subscribe((folder: Folder) => {
 			if (folder?.id) {
 				this.updateFolder(folder);
@@ -89,33 +104,17 @@ export class FolderComponent {
 		});
 	}
 
-	onEditFolder(data: Folder) {
-		const dialogRef = this.dialog.open(AddOrEditFolderDialogComponent);
-		dialogRef.componentInstance.folder = data;
-
-		dialogRef.afterClosed().subscribe((newFolder) => {
-			this.folderServie.editFolder(newFolder).subscribe(() => {
-				this.folders = [...this.folders!];
-			});
-		});
+	onRenameFolder(data: Folder) {
+		this.folders = [...this.folders!];
 	}
 
-	onEditQuiz(data: Quiz) {}
-
-	onDeleteItem(dataId: number) {
-		const dialogRef = this.dialog.open(WarningDialogComponent);
-		dialogRef.afterClosed().subscribe((isConfirm) => {
-			if (isConfirm) {
-				this.folderServie.deleteFolder(dataId).subscribe((res) => {
-					if (res) {
-						this.folders = this.folders!.filter(
-							(folder) => folder.id !== dataId
-						);
-					}
-				});
-			} else {
-				return;
-			}
-		});
+	onAddQuiz() {
+		this.router.navigate(['library/add-quiz']);
 	}
+
+	onRenameQuiz(data: Quiz) {
+		this.quizzes = [...this.quizzes!];
+	}
+
+	onDeleteItem(dataId: number) {}
 }

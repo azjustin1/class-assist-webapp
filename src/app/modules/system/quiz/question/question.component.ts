@@ -19,6 +19,7 @@ import { QuestionType } from '../enums/question-type.enum';
 import { Question } from '../models/question.model';
 import { MultipleChoicesComponent } from '../multiple-choices/multiple-choices.component';
 import { TrueFalseComponent } from '../true-false/true-false.component';
+import { ShortAnswerComponent } from '../short-answer/short-answer.component';
 
 @Component({
 	standalone: true,
@@ -33,6 +34,8 @@ import { TrueFalseComponent } from '../true-false/true-false.component';
 		MultipleChoicesComponent,
 		TranslateModule,
 		TrueFalseComponent,
+		ShortAnswerComponent,
+		MultipleChoicesComponent,
 	],
 	selector: 'app-question',
 	templateUrl: 'question.component.html',
@@ -40,6 +43,7 @@ import { TrueFalseComponent } from '../true-false/true-false.component';
 })
 export class QuestionComponent implements OnInit, OnDestroy {
 	@Input() question!: Question;
+	@Input() isEdit: boolean = false;
 	@Output() onAddQuestion = new EventEmitter<Question>();
 	@Output() onDeleteQuestion = new EventEmitter<Question>();
 	questionType = QuestionType;
@@ -50,19 +54,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
 		this.editor = new Editor();
 	}
 	ngOnInit(): void {
-		console.log(this.question.type === QuestionType.TRUE_FALSE)
-		console.log(this.question.type, QuestionType.TRUE_FALSE)
 		switch (this.question.type) {
 			case QuestionType.TRUE_FALSE:
-				console.log('True false');
 				break;
 
 			case QuestionType.MULTIPLE_CHOICES:
-			console.log("Mutiple")
-			break;
+				break;
 
 			default:
-				console.log('Default');
 				break;
 		}
 	}
@@ -72,7 +71,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 	}
 
 	onAddClick() {
-		this.question = { ...this.question, isEditting: false };
+		this.question = { ...this.question, isEditting: true };
 		this.onAddQuestion.emit(this.question);
 	}
 

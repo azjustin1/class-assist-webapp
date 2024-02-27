@@ -5,7 +5,7 @@ import {
 	Input,
 	OnDestroy,
 	OnInit,
-	Output
+	Output,
 } from '@angular/core';
 import {
 	FormBuilder,
@@ -19,6 +19,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { Editor, NgxEditorModule } from 'ngx-editor';
 import { Question } from '../models/question.model';
+import { AbstractQuestionComponent } from 'src/app/shared/components/abstract-question/abstract-question.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EditorConfig } from '@ckeditor/ckeditor5-core';
 
 @Component({
 	standalone: true,
@@ -30,34 +33,18 @@ import { Question } from '../models/question.model';
 		MatRadioModule,
 		MatIconModule,
 		MatButtonModule,
+		CKEditorModule,
 	],
 	selector: 'app-true-false',
 	templateUrl: 'true-false.component.html',
 	styleUrl: 'true-false.component.css',
 })
-export class TrueFalseComponent implements OnInit, OnDestroy {
-	@Input() question!: Question;
-	@Output() questionChange = new EventEmitter<Question>();
-	editor: Editor;
-	isShowEditor: boolean = false;
-	questionForm!: FormGroup;
-
-	constructor(private formBuilder: FormBuilder) {
-		this.editor = new Editor();
-	}
-
-	ngOnInit(): void {
+export class TrueFalseComponent extends AbstractQuestionComponent {
+	override ngOnInit(): void {
 		this.questionForm = this.formBuilder.group({
 			content: [this.question.content, Validators.required],
 			correctAnswer: [this.question.correctAnswer, Validators.required],
+			choices: [this.question.choices],
 		});
-
-	}
-	ngOnDestroy(): void {
-		this.editor.destroy();
-	}
-
-	onToggleEditor() {
-		this.isShowEditor = !this.isShowEditor;
 	}
 }

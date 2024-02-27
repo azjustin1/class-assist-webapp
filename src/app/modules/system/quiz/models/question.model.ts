@@ -1,17 +1,18 @@
 import { isUndefined } from 'lodash';
-import { QuestionType } from '../enums/question-type.enum';
+import { Choice } from './choice.model';
 
 export class Question {
 	id?: number;
-	orderId?: number;
+	index?: number;
 	content: string = '';
 	correctAnswer: string = '';
-	choices?: string[];
+	choices: Choice[] = [];
 	type: number;
 	isEditting?: boolean = false;
 
-	constructor(orderId: number, type: number) {
-		this.orderId = isUndefined(orderId) ? 0 : orderId;
+	constructor(orderId: number, type: number, choices: Choice[]) {
+		this.index = isUndefined(orderId) ? 0 : orderId;
+		this.choices = choices;
 		this.type = type;
 		this.isEditting = true;
 	}

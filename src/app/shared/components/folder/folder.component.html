@@ -1,30 +1,35 @@
 <div class="container">
 	<div class="actions">
-		<button mat-icon-button>
+		<button mat-button (click)="onAddQuiz()">
 			<mat-icon>note_add</mat-icon>
+			Add Quiz
 		</button>
-		<button mat-icon-button (click)="onAddNewFolder()">
+		<button mat-button (click)="onAddNewFolder()">
 			<mat-icon>create_new_folder</mat-icon>
+			Add Folder
 		</button>
 	</div>
 	<mat-list class="folder-container">
-		<mat-list-item class="folder-item" *ngFor="let folder of folders">
+		@for (folder of folders; track $index) {
+		<mat-list-item class="folder-item">
 			<app-folder-item
-				[data]="folder"
-				(onEditFolder)="onEditFolder($event)"
+				[folder]="folder"
+				(onEditFolder)="onRenameFolder($event)"
 				(onDelete)="onDeleteItem($event)"
 			></app-folder-item>
 		</mat-list-item>
+		}
 	</mat-list>
 
 	<mat-list class="folder-container">
-		<mat-list-item class="folder-item" *ngFor="let quiz of quizzes">
-			<app-folder-item
-				[isFile]="true"
-				[data]="quiz"
-				(onEditFile)="onEditQuiz($event)"
+		@for (quiz of quizzes; track $index) {
+		<mat-list-item class="folder-item">
+			<app-quiz-item
+				[quiz]="quiz"
+				(onEditQuiz)="onRenameQuiz($event)"
 				(onDelete)="onDeleteItem($event)"
-			></app-folder-item>
+			></app-quiz-item>
 		</mat-list-item>
+		}
 	</mat-list>
 </div>
