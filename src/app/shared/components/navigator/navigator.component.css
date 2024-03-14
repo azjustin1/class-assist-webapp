@@ -1,0 +1,10 @@
+.menu-item {
+	color: #fff;
+	text-decoration: none;
+}
+
+.menu-item.active::before {
+	color: #fff;
+	content: '• ';
+  font-weight: bold;
+}

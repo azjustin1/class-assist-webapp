@@ -1,0 +1,55 @@
+<div class="question__header">
+	<mat-form-field class="question__name">
+		<mat-label>Quiz name</mat-label>
+		<input
+			matInput
+			placeholder="Ex. Pizza"
+			value="Sushi"
+			[(ngModel)]="quiz.name"
+		/>
+	</mat-form-field>
+
+	<button mat-raised-button color="primary" (click)="onSaveQuiz()">
+		Save And Exit
+	</button>
+</div>
+
+@for (question of mapQuestionByOrderId | keyvalue; track $index) { @if
+(question.value.isEditting) {
+<div class="question-item">
+	<mat-card>
+		<mat-card-content>
+			<app-question
+				[question]="question.value"
+				(onAddQuestion)="onAddQuestion($event)"
+				(onDeleteQuestion)="onDeleteQuestion($event)"
+			></app-question>
+		</mat-card-content>
+	</mat-card>
+</div>
+} @else {
+<div class="question-item">
+	<app-question
+		[question]="question.value"
+		(onAddQuestion)="onAddQuestion($event)"
+		(onDeleteQuestion)="onDeleteQuestion($event)"
+	></app-question>
+</div>
+} }
+
+<div class="question-type">
+	<mat-chip-listbox
+		[value]="selectedQuestionType"
+		(change)="loadQuestionType($event)"
+	>
+		<mat-chip-option [value]="questionType.MULTIPLE_CHOICES"
+			>Multiple Choices</mat-chip-option
+		>
+		<mat-chip-option [value]="questionType.SHORT_ANSWER"
+			>Short Answer</mat-chip-option
+		>
+		<mat-chip-option [value]="questionType.TRUE_FALSE"
+			>True False</mat-chip-option
+		>
+	</mat-chip-listbox>
+</div>

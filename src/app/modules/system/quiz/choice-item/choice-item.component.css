@@ -1,0 +1,14 @@
+.editor-container {
+	width: 100%;
+	display: flex;
+	align-items: end;
+}
+
+.editor {
+	display: flex;
+}
+
+.delete-button {
+	margin-left: 10px;
+	height: 46px;
+}

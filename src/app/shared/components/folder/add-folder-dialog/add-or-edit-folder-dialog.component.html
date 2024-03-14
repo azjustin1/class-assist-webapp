@@ -1,0 +1,24 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content>
+	<p>{{ title }}</p>
+	<mat-form-field>
+		<mat-label>Folder Name</mat-label>
+		<input
+			matInput
+			class="form-control"
+			name="name"
+			required
+			[(ngModel)]="data.name"
+			#name="ngModel"
+		/>
+	</mat-form-field>
+	@if (name.invalid && (name.dirty || name.touched) ) {
+	<mat-error>This field is required</mat-error>
+	}
+</mat-dialog-content>
+<mat-dialog-actions class="actions-container">
+	<button mat-button (click)="onOkClick()" disabled="{{ name.invalid }}">
+		Ok
+	</button>
+	<button mat-button (click)="onCancelClick()">Cancel</button>
+</mat-dialog-actions>

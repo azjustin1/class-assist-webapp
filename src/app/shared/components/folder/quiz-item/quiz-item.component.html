@@ -1,0 +1,25 @@
+@if (quiz) {
+<mat-card class="quiz-item">
+	<mat-card-content class="quiz-content">
+		<mat-card-title (click)="open()">
+			<div class="quiz-name">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;
+				<span>
+					{{ quiz.name }}
+				</span>
+			</div>
+		</mat-card-title>
+		<mat-card-actions>
+			<div>
+				<button mat-icon-button [matMenuTriggerFor]="menu">
+					<mat-icon> more_vert </mat-icon>
+				</button>
+			</div>
+		</mat-card-actions>
+	</mat-card-content>
+</mat-card>
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="edit()">Rename</button>
+	<button mat-menu-item (click)="delete()">Delete</button>
+</mat-menu>
+}

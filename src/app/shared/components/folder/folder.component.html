@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="actions">
+		<button mat-button (click)="onAddQuiz()">
+			<mat-icon>note_add</mat-icon>
+			Add Quiz
+		</button>
+		<button mat-button (click)="onAddNewFolder()">
+			<mat-icon>create_new_folder</mat-icon>
+			Add Folder
+		</button>
+	</div>
+	<mat-list class="folder-container">
+		@for (folder of folders; track $index) {
+		<mat-list-item class="folder-item">
+			<app-folder-item
+				[folder]="folder"
+				(onEditFolder)="onRenameFolder($event)"
+				(onDelete)="onDeleteItem($event)"
+			></app-folder-item>
+		</mat-list-item>
+		}
+	</mat-list>
+
+	<mat-list class="folder-container">
+		@for (quiz of quizzes; track $index) {
+		<mat-list-item class="folder-item">
+			<app-quiz-item
+				[quiz]="quiz"
+				(onEditQuiz)="onRenameQuiz($event)"
+				(onDelete)="onDeleteItem($event)"
+			></app-quiz-item>
+		</mat-list-item>
+		}
+	</mat-list>
+</div>

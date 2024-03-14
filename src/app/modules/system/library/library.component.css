@@ -1,0 +1,19 @@
+.container {
+}
+
+.folder {
+	padding-left: 10px;
+	height: 100%;
+	max-width: 100%;
+}
+
+.main-content {
+	padding: 20px;
+}
+
+.actions {
+	display: flex;
+	flex-direction: row-reverse;
+	width: 100%;
+}
+

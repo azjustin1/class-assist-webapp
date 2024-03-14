@@ -1,13 +1,13 @@
 <div class="app">
-  <div class="header">
-    <app-header (sidenav)="sidenav.toggle()"></app-header>
-  </div>
-  <mat-drawer-container [hasBackdrop]="true">
-    <mat-drawer #sidenav mode="over"
-      ><app-navigation></app-navigation
-    ></mat-drawer>
-    <mat-drawer-content class="content">
-      <router-outlet></router-outlet>
-    </mat-drawer-content>
-  </mat-drawer-container>
+	<div class="header">
+		<app-header (sidenav)="sidenav.toggle()"></app-header>
+	</div>
+	<mat-drawer-container [hasBackdrop]="true">
+		<mat-drawer #sidenav mode="over"
+			><app-navigator (onMenuItemClick)="sidenav.close()"></app-navigator
+		></mat-drawer>
+		<mat-drawer-content class="content">
+			<router-outlet></router-outlet>
+		</mat-drawer-content>
+	</mat-drawer-container>
 </div>

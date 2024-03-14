@@ -1,0 +1,30 @@
+.question__content {
+	display: flex;
+	width: 77%;
+	align-items: start;
+}
+
+.question__editor {
+	flex-direction: column;
+	width: 100%;
+}
+
+.choice {
+	display: flex;
+	margin: 10px 20px;
+	width: 80%;
+	align-self: start;
+}
+
+.choice__radio {
+	align-self: flex-start;
+}
+
+.choice__editor {
+	width: 100%;
+}
+
+.choice__add-button {
+	margin-top: 10px;
+	margin-left: 60px;
+}

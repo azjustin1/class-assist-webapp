@@ -1,0 +1,10 @@
+.quiz-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.quiz-name {
+	display: flex;
+	align-items: center;
+}

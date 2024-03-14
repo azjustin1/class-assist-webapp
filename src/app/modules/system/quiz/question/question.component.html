@@ -1,0 +1,18 @@
+<div class="question-container">
+	<div class="question">
+		@switch (question.type) { @case (questionType.MULTIPLE_CHOICES) {
+		<app-multiple-choices [(question)]="question"></app-multiple-choices>
+		} @case (questionType.SHORT_ANSWER) {
+		<app-short-answer [(question)]="question"></app-short-answer>
+		} @case(questionType.TRUE_FALSE) {
+		<app-true-false [(question)]="question"></app-true-false>}}
+	</div>
+	<div class="actions">
+		<button mat-icon-button color="primary" (click)="onAddClick()">
+			<mat-icon>{{ isEdit ? 'check' : 'edit' }}</mat-icon>
+		</button>
+		<button mat-icon-button color="warn" (click)="onDeleteClick()">
+			<mat-icon>delete</mat-icon>
+		</button>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<form [formGroup]="questionForm" class="question-form">
+	<div class="question__content">
+		@if (question.isEditting) {
+		<h2 class="mat-display-2">{{ question.index }}.&nbsp;&nbsp;</h2>
+		<div class="editor">
+			<ckeditor
+				[editor]="Editor"
+				[config]="config"
+				formControlName="content"
+				[(ngModel)]="question.content"
+				(focusIn)="onToggleEditor()"
+				(focusOut)="onToggleEditor()"
+			></ckeditor>
+		</div>
+		} @else {
+		<div class="editor__text">
+			<h3 class="mat-display">{{ question.index }}. &nbsp;</h3>
+			<h3 class="mat-display" [innerHTML]="question.content"></h3>
+		</div>
+		}
+	</div>
+	<div class="question__choice">
+		<mat-radio-group
+			formControlName="correctAnswer"
+			[(ngModel)]="question.correctAnswer"
+		>
+			@for (choice of question.choices; track $index) {
+			<mat-radio-button value="choice.content" color="primary">{{
+				choice.content
+			}}</mat-radio-button>
+			}
+		</mat-radio-group>
+	</div>
+</form>

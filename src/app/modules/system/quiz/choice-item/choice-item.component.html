@@ -1,0 +1,15 @@
+<div class="editor-container">
+	<div class="editor">
+		<ckeditor
+			[editor]="editor"
+			[(ngModel)]="choice.content"
+		></ckeditor>
+	</div>
+	<button
+		mat-icon-button
+		class="delete-button"
+		(click)="onDeleteChoiceClick()"
+	>
+		<mat-icon>clear</mat-icon>
+	</button>
+</div>

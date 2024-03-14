@@ -1,0 +1,37 @@
+<form [formGroup]="questionForm" class="question-form">
+	<div class="question__content">
+		<h2 class="mat-display-2">{{ question.index }}.&nbsp;&nbsp;</h2>
+		<div class="question__editor">
+			<ckeditor
+				[editor]="Editor"
+				[ngModelOptions]="{ standalone: true }"
+				[(ngModel)]="question.content"
+			></ckeditor>
+		</div>
+	</div>
+
+	<div class="question__choice">
+		@for (choice of question.choices; track $index) {
+		<div class="choice">
+			<mat-form-field class="choice__input">
+				<mat-label>{{ choice.index }}</mat-label>
+				<input matInput type="text" />
+			</mat-form-field>
+			<button
+				mat-icon-button
+				class="delete-button"
+				(click)="onDeleteChoice(choice.index)"
+			>
+				<mat-icon>clear</mat-icon>
+			</button>
+		</div>
+		}
+	</div>
+	<button
+		mat-raised-button
+		(click)="onAddChoice()"
+		class="choice__add-button"
+	>
+		<mat-icon>add</mat-icon> Add Answer
+	</button>
+</form>

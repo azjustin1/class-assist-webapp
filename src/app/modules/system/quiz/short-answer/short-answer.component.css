@@ -1,0 +1,42 @@
+.question-container {
+	display: flex;
+}
+
+.question__content {
+	display: flex;
+	width: 77%;
+	align-items: start;
+}
+
+.question__editor {
+	width: 100%;
+}
+
+.question__choice {
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	margin: 10px 0 0 20px;
+}
+
+.choice {
+	display: flex;
+	align-items: center;
+	margin: 10px;
+}
+
+.choice__input {
+	width: 400px;
+}
+
+.delete-button {
+  align-self: flex-start;
+	margin-left: 10px;
+	height: 56px;
+	line-height: 40px;
+  width: 56px;
+}
+
+.choice__add-button {
+	margin-left: 30px;
+}

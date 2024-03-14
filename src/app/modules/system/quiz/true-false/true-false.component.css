@@ -1,0 +1,33 @@
+.question__content {
+	display: flex;
+	width: 77%;
+	align-items: start;
+}
+
+.editor-container {
+  width: 77%;
+  display: flex;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.editor__text {
+  display: flex;
+  flex-direction: row;
+}
+
+.question__choice {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}
